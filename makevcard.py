@@ -92,6 +92,20 @@ if j > 1:
 for i in range(len(emails)):
 	if emails[i].strip() == "":
 		continue
+	if emails[i].count("@") > 1:
+		print(5*"\n")
+		print("ERRO!")
+		print("Há mais de um email na linha número {}".format(i))
+		print("Exemplo: {}".format(emails[i]))
+		print(5*"\n")
+		break
+	if emails[i].count("@") < 1:
+		print(5*"\n")
+		print("ERRO!")
+		print("Não há um email válido na linha número {}".format(i))
+		print("Exemplo: {}".format(emails[i]))
+		print(5*"\n")
+		break
 	printer("BEGIN:VCARD",place)
 	printer("VERSION:3.0",place)
 	if grupo.strip() != "":
