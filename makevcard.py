@@ -1,8 +1,6 @@
 ##Initial Checks and Important variables############################################################################################################################
 lb = "\n"
-from time import sleep
 import platform
-import time
 import datetime
 from pathlib import Path as find
 error_msg = "Something went Wrong!"
@@ -18,7 +16,7 @@ os_detect()
 
 #Função que define aonde será salvo logs
 def set_filepath(save_to = "not_set"):
-	saving = str(find.cwd())+"/"
+	saving = str(find.cwd())+"\\"
 	return saving
 
 filepath = set_filepath()
@@ -28,21 +26,6 @@ time_now = datetime.datetime.now()
 print("Data: "+str(time_now))
 
 ##Funções############################################################################################################################
-
-#delay de t segundos - com mensagem
-def delay(t = 1, message = ""):
-	if message == 1:
-		if t == 1:
-			print("Delaying for "+str(t)+" second.")
-		else:
-			print("Delaying for "+str(t)+" seconds.")
-	elif message != "":
-		print(message)
-	if t == t:
-		sleep(t)
-	else:
-		print("Delay Error")
-
 #Adiciona o que acontece em um .txt
 def printer(add_to_log, title = "log"):
 	path = filepath+str(title)+".vcf"
@@ -75,8 +58,8 @@ abrir()
 
 grupo = input("Qual o grupo ao qual os contatos serão inseridos? ")
 
-find("{}vcard/".format(filepath)).mkdir(parents=True, exist_ok=True)
-save_path = "{}vcard/".format(filepath)
+find("{}vcard\\".format(filepath)).mkdir(parents=True, exist_ok=True)
+save_path = "{}vcard\\".format(filepath)
 
 #g = open(filepath+"nomes.txt")
 #gre = g.readlines()
@@ -92,13 +75,31 @@ for i in hre:
 	emails.append(i.strip("\n"))
 
 fin = "contatos_{}".format(grupo)
-place = "vcard/{}".format(fin)
+place = "vcard\\{}".format(fin)
+
+j = 1
+
+while find(filepath+place+".vcf").exists():
+	place = "vcard\\{}({})".format(fin,j)
+	j += 1
+
+if j > 1:
+	print(3*"\n")
+	print("Arquivo vCard já existe!")
+	print("Novo nome do vCard: {}({})".format(fin,j-1))
+	print(3*"\n")
 
 for i in range(len(emails)):
+	if emails[i].strip() == "":
+		continue
 	printer("BEGIN:VCARD",place)
 	printer("VERSION:3.0",place)
-	printer("FN:{} -- {}".format(grupo, emails[i]),place)
+	if grupo.strip() != "":
+		printer("FN:{} - {}".format(grupo, emails[i]),place)
+	elif grupo.strip() =="":
+		printer("FN:{}".format(emails[i]),place)
 	printer("EMAIL;type=INTERNET:{}".format(emails[i]),place)
 	printer("END:VCARD",place)
 
-print("Arquivo salvo em {}contatos_{}.vcf".format(save_path,grupo))
+print("Arquivo salvo em {}{}.vcf".format(filepath,place))
+a = input("Pressione ENTER para sair.")
