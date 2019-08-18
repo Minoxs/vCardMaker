@@ -27,8 +27,8 @@ print("Data: "+str(time_now))
 
 ##Funções############################################################################################################################
 #Adiciona o que acontece em um .txt
-def printer(add_to_log, title = "log"):
-	path = filepath+str(title)+".vcf"
+def printer(add_to_log, title = "log", extension = ".vcf"):
+	path = filepath+str(title)+extension
 	p = open(path, "a+")
 	p.write(str(add_to_log) + lb)
 	p.close()
@@ -72,7 +72,7 @@ emails = []
 #	names.append(i.strip("\n"))
 
 for i in hre:
-	emails.append(i.strip("\n"))
+	emails.append(i.strip("\n").lower().strip().strip(";").strip(".").strip(',').strip(":"))
 
 fin = "contatos_{}".format(grupo)
 place = "vcard\\{}".format(fin)
@@ -93,19 +93,21 @@ for i in range(len(emails)):
 	if emails[i].strip() == "":
 		continue
 	if emails[i].count("@") > 1:
-		print(5*"\n")
+		print(2*"\n")
 		print("ERRO!")
-		print("Há mais de um email na linha número {}".format(i))
+		print("Há mais de um email na linha número {}".format(i+1))
 		print("Exemplo: {}".format(emails[i]))
-		print(5*"\n")
-		break
+		print(2*"\n")
+		printer(emails[i],place+"_problemas",".txt")
+		continue
 	if emails[i].count("@") < 1:
-		print(5*"\n")
+		print(2*"\n")
 		print("ERRO!")
-		print("Não há um email válido na linha número {}".format(i))
+		print("Não há um email válido na linha número {}".format(i+1))
 		print("Exemplo: {}".format(emails[i]))
-		print(5*"\n")
-		break
+		print(2*"\n")
+		printer(emails[i],place+"_problemas",".txt")
+		continue
 	printer("BEGIN:VCARD",place)
 	printer("VERSION:3.0",place)
 	if grupo.strip() != "":
