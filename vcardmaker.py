@@ -56,23 +56,20 @@ def abrir():
 
 abrir()
 
+emails = []
+for i in hre:
+	emails.append(i.strip("\n").lower().strip().strip(";").strip(".").strip(',').strip(":").strip())
+
+while len(emails) == 0:
+	print(3*"\n")
+	print("Arquivo de emails vazio!")
+	arq = input("Qual o nome do arquivo que contém os emails? ")
+	abrir()
+
 grupo = input("Qual o grupo ao qual os contatos serão inseridos? ")
 
 find("{}vcard\\".format(filepath)).mkdir(parents=True, exist_ok=True)
 save_path = "{}vcard\\".format(filepath)
-
-#g = open(filepath+"nomes.txt")
-#gre = g.readlines()
-#g.close()
-
-#names = []
-emails = []
-
-#for i in gre:
-#	names.append(i.strip("\n"))
-
-for i in hre:
-	emails.append(i.strip("\n").lower().strip().strip(";").strip(".").strip(',').strip(":"))
 
 fin = "contatos_{}".format(grupo)
 place = "vcard\\{}".format(fin)
@@ -89,6 +86,8 @@ if j > 1:
 	print("Novo nome do vCard: {}({})".format(fin,j-1))
 	print(3*"\n")
 
+global check
+check = 0
 for i in range(len(emails)):
 	if emails[i].strip() == "":
 		continue
@@ -116,6 +115,11 @@ for i in range(len(emails)):
 		printer("FN:{}".format(emails[i]),place)
 	printer("EMAIL;type=INTERNET:{}".format(emails[i]),place)
 	printer("END:VCARD",place)
+	check += 1
 
-print("Arquivo salvo em {}{}.vcf".format(filepath,place))
+if check > 0:
+	print("Arquivo salvo em {}{}.vcf".format(filepath,place))
+elif check == 0:
+	print("Arquivo de vCards vazio; Apenas arquivo de problemas criado.")
+
 a = input("Pressione ENTER para sair.")

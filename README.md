@@ -6,7 +6,7 @@ Feito para ser usado com o chasque webmail da UFRGS, porém deve funcionar para 
 Não é necessario instalação.
 
 # Requerimentos:
-- [Python 3](https://www.python.org/downloads/) -- Preferencialmente 3.7.4
+- [Python 3](https://www.python.org/downloads/)
 
 # Como Usar:
 0. Tenha um arquivo de texto (.txt) contendo **1 email por linha**, na mesma pasta que o vcardmaker.py
