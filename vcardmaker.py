@@ -39,13 +39,17 @@ print("Pasta atual: {}".format(filepath))
 print("(Certifique-se que o arquivo contendo os emails está na mesma pasta que esse executável!)")
 arq = input("Qual o nome do arquivo que contém os emails? ")
 
+emails = []
+
 def abrir():
 	global arq
-	global hre
+	global emails
 	try:
 		h = open(filepath+arq+".txt")
 		hre = h.readlines()
 		h.close()
+		for i in hre:
+			emails.append(i.strip("\n").lower().strip().strip(";").strip(".").strip(',').strip(":").strip())
 	except:
 		print(150*"\n")
 		print("Arquivo de emails não encontrado!")
@@ -55,10 +59,6 @@ def abrir():
 		abrir()
 
 abrir()
-
-emails = []
-for i in hre:
-	emails.append(i.strip("\n").lower().strip().strip(";").strip(".").strip(',').strip(":").strip())
 
 while len(emails) == 0:
 	print(3*"\n")
