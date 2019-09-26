@@ -3,6 +3,7 @@ lb = "\n"
 import platform
 import datetime
 from pathlib import Path as find
+from collections import Counter
 error_msg = "Something went Wrong!"
 
 #Função que detecta e diz o sistema quando compilado
@@ -66,6 +67,12 @@ while len(emails) == 0:
 	arq = input("Qual o nome do arquivo que contém os emails? ")
 	abrir()
 
+dup_test = Counter(emails)
+for i in dup_test:
+	if dup_test[i] > 1:
+		for j in range(dup_test[i]-1):
+			emails.remove(i)
+
 grupo = input("Qual o grupo ao qual os contatos serão inseridos? ")
 
 find("{}vcard\\".format(filepath)).mkdir(parents=True, exist_ok=True)
@@ -88,6 +95,8 @@ if j > 1:
 
 global check
 check = 0
+global prob
+prob = 0
 for i in range(len(emails)):
 	if emails[i].strip() == "":
 		continue
@@ -97,7 +106,8 @@ for i in range(len(emails)):
 		print("Há mais de um email na linha número {}".format(i+1))
 		print("Exemplo: {}".format(emails[i]))
 		print(2*"\n")
-		printer(emails[i],place+"_problemas",".txt")
+		printer(emails[i],arq+"_problemas",".txt")
+		prob += 1
 		continue
 	if emails[i].count("@") < 1:
 		print(2*"\n")
@@ -105,7 +115,8 @@ for i in range(len(emails)):
 		print("Não há um email válido na linha número {}".format(i+1))
 		print("Exemplo: {}".format(emails[i]))
 		print(2*"\n")
-		printer(emails[i],place+"_problemas",".txt")
+		printer(emails[i],arq+"_problemas",".txt")
+		prob += 1
 		continue
 	printer("BEGIN:VCARD",place)
 	printer("VERSION:3.0",place)
@@ -116,6 +127,11 @@ for i in range(len(emails)):
 	printer("EMAIL;type=INTERNET:{}".format(emails[i]),place)
 	printer("END:VCARD",place)
 	check += 1
+
+if prob >= 1:
+	for i in range(len(emails)):
+		if emails[i].count("@") == 1:
+			printer(emails[i],arq+"_clean",".txt")
 
 if check > 0:
 	print("Arquivo salvo em {}{}.vcf".format(filepath,place))
