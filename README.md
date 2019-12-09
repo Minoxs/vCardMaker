@@ -1,4 +1,5 @@
 # vCardMaker
+## Agora com interface gráfica!! :)
 Cria um vCard com informações básicas de contato usando apenas o email.
 
 Feito para ser usado com o chasque webmail da UFRGS, porém deve funcionar para qualquer outro email.
@@ -6,11 +7,11 @@ Feito para ser usado com o chasque webmail da UFRGS, porém deve funcionar para 
 Não é necessario instalação.
 
 # Requerimentos:
-- [Python 3](https://www.python.org/downloads/)
+- [Python 3.8](https://www.python.org/downloads/) (**Talvez** funcione com qualquer versão >= 3.7)
+
+# Existem duas versões
+- Linux
+- Windows 10
 
 # Como Usar:
-0. Tenha um arquivo de texto (.txt) contendo **1 email por linha**, na mesma pasta que o vcardmaker.py
-1. Abra o vcardmaker.py usando Python
-2. Digite o nome do arquivo de texto que contém os emails (**sem** digitar a extensão .txt)
-3. Digite o nome do grupo, esse será usado como prefixo para o nome, para ser encontrado facilmente. (Pode ser deixado em branco).
-4. O arquivo final será salvo em uma pasta chamada vcard, localizada junto ao vcardmaker.py
+A interface deve ser auto-explicativa o3o
