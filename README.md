@@ -9,9 +9,10 @@ Não é necessario instalação.
 # Requerimentos:
 - [Python 3.8](https://www.python.org/downloads/) (**Talvez** funcione com qualquer versão >= 3.7)
 
-# Existem duas versões
-- Linux
-- Windows 10
+# Versões
+- Linux Executável
+- Windows Executável
+- O Código fonte está em uma pasta separada e pode ser rodado usando o interpretador Python
 
 # Como Usar:
 A interface deve ser auto-explicativa o3o

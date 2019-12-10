@@ -5,11 +5,11 @@ from vcardmaker import *
 gui.change_look_and_feel('Dark Blue 3')
 
 layout = [
-	[gui.T("Arquivo de Emails",size=(15,1)),gui.In(size=(48,2),key="file"),gui.FileBrowse("Procurar",file_types=(("Arquivo de Texto","*.txt"),)),gui.T(" "*24),gui.Button("Sair")],
-	[gui.T("Salvar em:",size=(15,1)),gui.In(size=(48,2),key="save"),gui.FolderBrowse("Procurar")],
-	[gui.T("Nome do Grupo:",size=(15,1)),gui.In(size=(48,2),key="group")],
-	[gui.Output(size=(100,15))],
-	[gui.Button("Confirmar",size=(99,2))]
+	[gui.T("Arquivo de Emails",size=(15,1)),gui.In(size=(70,2),key="file"),gui.FileBrowse("Procurar",file_types=(("Arquivo de Texto","*.txt"),)),gui.T(" "*13),gui.Button("Sair")],
+	[gui.T("Salvar em:",size=(15,1)),gui.In(size=(70,2),key="save"),gui.FolderBrowse("Procurar")],
+	[gui.T("Nome do Grupo:",size=(15,1)),gui.In(size=(70,2),key="group")],
+	[gui.Output(size=(112,20))],
+	[gui.Button("Confirmar",size=(100,2))]
 ]
 
 create_save_folder()

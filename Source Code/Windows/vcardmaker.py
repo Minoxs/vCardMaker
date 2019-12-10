@@ -33,11 +33,11 @@ def abrir(path_to_txt):
 	return emails
 
 def create_save_folder():
-	find(str(find.cwd())+"\\Save").mkdir(parents=True,exist_ok=True)
+	find(str(find.cwd())+"/Save").mkdir(parents=True,exist_ok=True)
 
 def generate_vcard(emails,save_path,group_name):
 	vcard_filename = "contatos_{}".format(group_name)
-	save_location = "{}\\{}".format(save_path,vcard_filename)
+	save_location = "{}/{}".format(save_path,vcard_filename)
 
 	j = 1
 
