@@ -21,11 +21,12 @@ def abrir(path_to_txt):
 		if len(emails) == 0:
 			print("Arquivo de emails vazio!")
 			return 0
-		dup_test = Counter(emails)
-		for i in dup_test:
-			if dup_test[i] > 1:
-				for j in range(dup_test[i]-1):
-					emails.remove(i)
+		#dup_test = Counter(emails)
+		#print(dup_test)
+		#for i in dup_test:
+		#	if dup_test[i] > 1:
+		#		for j in range(dup_test[i]-1):
+		#			emails.remove(i)
 	except:
 		print(150*"\n")
 		print("Arquivo Inválido!")
@@ -35,15 +36,22 @@ def abrir(path_to_txt):
 def create_save_folder():
 	find(str(find.cwd())+"/Save").mkdir(parents=True,exist_ok=True)
 
+#def check_for_duplicate(email_list, emails_to_add, group_name):
+#	for new_email in emails_to_add:
+#		for old_email in email_list[1]:
+#	return email_list
+
 def generate_vcard(emails,save_path,group_name):
 	vcard_filename = "contatos_{}".format(group_name)
 	save_location = "{}/{}".format(save_path,vcard_filename)
 
 	j = 1
 
+	temp = save_location
 	while find(save_location+".vcf").exists():
-		save_location = "{}({})".format(save_location,j)
+		save_location = "{}({})".format(temp,j)
 		j += 1
+	del temp
 
 	if j > 1:
 		print(2*"\n")
