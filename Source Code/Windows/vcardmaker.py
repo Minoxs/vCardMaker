@@ -42,6 +42,14 @@ def check_for_duplicate(email_list, emails_to_add, group_name):
 
 #function to generate vCards
 def generate_vcard(emails,save_path,group_name):
+	
+	#if group_name is a list, means each email can have a different group name
+	#useful for making the card with every email
+	group_list = None #initializing variable for later use if necessary
+	if type(group_name) is list:
+		group_list = list(group_name)
+		group_name = "TodosContatos"
+
 	vcard_filename = "contatos_{}".format(group_name)
 	save_location = "{}/{}".format(save_path,vcard_filename)
 
@@ -88,6 +96,8 @@ def generate_vcard(emails,save_path,group_name):
 		printer("BEGIN:VCARD",save_location)
 		printer("VERSION:3.0",save_location)
 		if group_name.strip() != "":
+			if group_list is not None:
+				group_name = group_list[i]
 			printer("FN:{} - {}".format(group_name, emails[i]),save_location)
 		elif group_name.strip() =="":
 			printer("FN:{}".format(emails[i]),save_location)
