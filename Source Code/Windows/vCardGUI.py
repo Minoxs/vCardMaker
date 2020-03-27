@@ -53,7 +53,7 @@ while True:
 			print(status)
 		
 		if doCreateAllEmailCard:
-			status = generate_vcard(all_emails[1], get_save_folder, AllEmails)
+			status = generate_vcard(all_emails[1], get_save_folder, "ListaCompleta")
 			print(status)
 
 		loc = window.CurrentLocation()
