@@ -36,10 +36,15 @@ def abrir(path_to_txt):
 def create_save_folder():
 	find(str(find.cwd())+"/Save").mkdir(parents=True,exist_ok=True)
 
-#def check_for_duplicate(email_list, emails_to_add, group_name):
-#	for new_email in emails_to_add:
-#		for old_email in email_list[1]:
-#	return email_list
+def check_for_duplicate(email_list, emails_to_add, group_name):
+	for new_email in emails_to_add:
+		for i in range(len(email_list[1])):
+			if new_email == email_list[1][i]:
+				print("Email {} Já existe".format(new_email))
+				print("Grupos {} e {}".format(email_list[0][i], group_name))
+		email_list[0].append(group_name) #em email_list[0] estão o nome do grupo
+		email_list[1].append(new_email)	 #em email_list[1] está o email da pessoa
+	return email_list
 
 def generate_vcard(emails,save_path,group_name):
 	vcard_filename = "contatos_{}".format(group_name)
