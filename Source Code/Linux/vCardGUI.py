@@ -9,7 +9,8 @@ layout = [
 	[gui.T("Salvar em:",size=(15,1)),gui.In(size=(48,2),key="save"),gui.FolderBrowse("Procurar")],
 	[gui.T("Nome do Grupo:",size=(15,1)),gui.In(size=(48,2),key="group")],
 	[gui.Output(size=(100,15))],
-	[gui.Button("Confirmar",size=(99,2))]
+	[gui.Button("Confirmar",size=(99,2))],
+	[gui.T("Version 2.0", text_color="dark grey")]
 ]
 
 create_save_folder()
