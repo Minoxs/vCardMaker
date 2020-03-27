@@ -14,7 +14,7 @@ layout = [
 	[gui.Checkbox("Criar lista adicional única com todos emails", key="group_emails_check")],
 	[gui.Output(size=(112,20))],
 	[gui.Button("Confirmar",size=(100,2))],
-	[gui.T("Versão 3.0", text_color="dark gray"), gui.Button("Sair",size=(10,1))]
+	[gui.T("Versão 3.1", text_color="dark gray"), gui.Button("Sair",size=(10,1))]
 ]
 
 create_save_folder() #creates save folder if one doesn't exist already
